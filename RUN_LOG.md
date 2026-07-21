@@ -393,3 +393,54 @@ token-shaped strings in project/evidence files (excluding runtime secrets): 0
 ```
 
 The only `policy.py` anywhere below the repository is the third-party `.venv/Lib/site-packages/win32com/server/policy.py` installed transitively by the pinned environment; no Arbiter policy file or logic exists.
+
+## GitHub publication substep
+
+Publication was completed on 2026-07-21 without rerunning Milestone 1A.
+
+Initial inspection at `2026-07-21T21:23:40.6263344Z`:
+
+```text
+GitHub account: batesw60 (authenticated; repo scope present)
+Local branch: main
+Current commit: none
+Remotes: none
+Working tree: 11 untracked Milestone 1A project files; ignored runtime directories preserved
+Target batesw60/datahub-agent-arbiter: did not exist
+```
+
+The complete PASS state was validated (`result.json` parsed; `1 passed in 0.01s`) and committed:
+
+```text
+c2ab5e3603c89dbf458b8c17b79b577aaba0bb2d
+Complete DataHub Agent Arbiter Milestone 1A
+```
+
+Publication command:
+
+```powershell
+gh repo create batesw60/datahub-agent-arbiter --public --source . --remote origin --push
+```
+
+The first call did not create a repository because `gh` encountered Git's dubious-ownership safety check. The retry used an ephemeral `safe.directory` environment override; repository creation succeeded, but its first push failed because Git did not trust the host proxy certificate. No duplicate repository was created. Recovery used Git's Windows certificate backend for one push command:
+
+```powershell
+git -c safe.directory='<authoritative repository>' -c http.sslBackend=schannel push -u origin main
+```
+
+Verification at `2026-07-21T21:25:42.5185298Z` after the initial PASS-state push:
+
+```text
+URL: https://github.com/batesw60/datahub-agent-arbiter
+Visibility: PUBLIC (API visibility=public, private=false)
+Local branch: main
+Remote default branch: main
+origin: https://github.com/batesw60/datahub-agent-arbiter.git
+Local hash:  c2ab5e3603c89dbf458b8c17b79b577aaba0bb2d
+Remote hash: c2ab5e3603c89dbf458b8c17b79b577aaba0bb2d
+Hash match: true
+README: GitHub content endpoint returned README.md at /blob/main/README.md (size 2759)
+License: GitHub detected Apache License 2.0, SPDX Apache-2.0
+```
+
+Only `RUN_LOG.md` and `result.json` were changed for publication evidence after the initial push. The final publication-evidence commit hash is verified after pushing and reported in the task result because a commit cannot contain its own hash.
