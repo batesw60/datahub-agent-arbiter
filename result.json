@@ -1,7 +1,7 @@
 {
   "status": "PASS",
   "milestone": "1A",
-  "updated_at": "2026-07-21T21:24:37.6413476Z",
+  "updated_at": "2026-07-21T22:09:06.2608706Z",
   "environment": {
     "windows": "Microsoft Windows NT 10.0.26200.0 (Windows 10 Pro, build 26200, 64-bit)",
     "python": "3.11.7",
@@ -11,7 +11,7 @@
     "docker_compose": "v2.29.7-desktop.1",
     "git": "2.40.0.windows.1",
     "github_cli": "2.96.0",
-    "github_authentication": "BLOCKED_INVALID_TOKEN",
+    "github_authentication": "PASS_AUTHENTICATED_AS_BATESW60",
     "codex": "codex-cli 0.144.4",
     "codex_runtime_sandbox": "workspace-write",
     "codex_persistent_windows_sandbox": "unelevated",
@@ -100,17 +100,22 @@
     "used_for_metadata": false,
     "details": "No SDK aspect supplement was needed. acryl-datahub was used only for the supported local credential exchange and quickstart/diagnostic CLI operations."
   },
-  "github_repository_url": null,
-  "blockers": [
-    {
-      "scope": "GitHub publication only",
-      "detail": "gh auth status reported an invalid token; repository creation, push, and GitHub license/About checks were not attempted."
-    }
-  ],
+  "github_repository_url": "https://github.com/batesw60/datahub-agent-arbiter",
+  "github_publication": {
+    "repository": "batesw60/datahub-agent-arbiter",
+    "url": "https://github.com/batesw60/datahub-agent-arbiter",
+    "visibility": "PUBLIC",
+    "default_branch": "main",
+    "license_name": "Apache License 2.0",
+    "license_spdx_identifier": "Apache-2.0",
+    "license_path": "LICENSE",
+    "verification_timestamp": "2026-07-21T22:08:49.1661275Z"
+  },
+  "blockers": [],
   "scope_confirmation": {
     "synthetic_arbiter_entities_created": false,
     "policy_logic_created": false,
     "milestone_1b_implemented": false
   },
-  "next_recommended_action": "Reauthenticate GitHub CLI and rerun only the public repository creation, push, and license-detection verification substep."
+  "next_recommended_action": "Obtain final independent verification of the corrected Milestone 1A evidence package before beginning Milestone 1B."
 }

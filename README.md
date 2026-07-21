@@ -12,7 +12,9 @@ Milestone 1A only: bring up a pinned local DataHub stack, perform two consecutiv
 
 ## Setup status
 
-Milestone 1A: **PASS**. DataHub Core v1.6.0 is healthy locally, the UI responds, official sample metadata is present, and the DataHub MCP Server returned the same real entity metadata twice consecutively. See `RUN_LOG.md` for timestamped command evidence and `result.json` for the structured outcome.
+Milestone 1A: **PASS**. DataHub Core v1.6.0 is healthy locally, the UI responds, official sample metadata is present, and the DataHub MCP Server returned the same real entity metadata twice consecutively. The technical and publication gates have passed; only final independent verification of the corrected Milestone 1A evidence package remains before Milestone 1B.
+
+Public repository: [`batesw60/datahub-agent-arbiter`](https://github.com/batesw60/datahub-agent-arbiter). GitHub reports it as public with default branch `main` and detects `LICENSE` as Apache License 2.0 (`Apache-2.0`). See `RUN_LOG.md` for timestamped command evidence and `result.json` for the structured outcome.
 
 ## Why this project exists
 

@@ -244,3 +244,77 @@ All timestamps are ISO 8601 UTC. Outputs are trimmed only for relevance. No excl
 - Exit code: `0`.
 - Output: all JSON valid; `No broken requirements found`; `2 passed in 0.91s`; GMS and frontend healthy on pinned `v1.6.0` images; GMS HTTP `200`; UI HTTP `200`; no forbidden scope files; Git repository on branch `main` with no commits yet.
 - Cleanup: removed only the temporary failed-login cookie/response files and obsolete empty-directory placeholders. All required source and evidence files remain.
+
+## Publication-state documentation correction
+
+### 2026-07-21T22:08:49.1661275Z — PASS
+
+- Exact command: `gh auth status --hostname github.com`
+- Exit code: `0`.
+- Relevant output: authenticated to `github.com` as account `batesw60` using the keyring; account is active; Git operations protocol is HTTPS; token scopes include `repo`.
+- Result: GitHub authentication passed.
+
+### 2026-07-21T22:08:49.1661275Z — PASS
+
+- Exact command: `gh repo view batesw60/datahub-agent-arbiter --json nameWithOwner,url,visibility,defaultBranchRef`
+- Exit code: `0`.
+- Relevant output: `{"defaultBranchRef":{"name":"main"},"nameWithOwner":"batesw60/datahub-agent-arbiter","url":"https://github.com/batesw60/datahub-agent-arbiter","visibility":"PUBLIC"}`.
+- Result: public repository identity and default branch `main` verified.
+
+### 2026-07-21T22:08:49.1661275Z — PASS
+
+- Exact command: `gh api repos/batesw60/datahub-agent-arbiter/license --jq '{name: .license.name, spdx_id: .license.spdx_id, path: .path}'`
+- Exit code: `0`.
+- Relevant output: `{"name":"Apache License 2.0","path":"LICENSE","spdx_id":"Apache-2.0"}`.
+- Result: GitHub license detection passed with name `Apache License 2.0`, SPDX identifier `Apache-2.0`, and path `LICENSE`.
+
+### 2026-07-21T22:08:49.1661275Z — PASS
+
+- Exact command: `gh api repos/batesw60/datahub-agent-arbiter --jq '{url: .html_url, visibility: .visibility, default_branch: .default_branch, license: .license}'`
+- Exit code: `0`.
+- Relevant output: repository URL `https://github.com/batesw60/datahub-agent-arbiter`; visibility `public`; default branch `main`; license key `apache-2.0`, name `Apache License 2.0`, SPDX identifier `Apache-2.0`.
+- Result: the repository-level publication state matches all required values.
+
+### 2026-07-21T22:09:06.2608706Z — PASS
+
+- Exact operation: corrected only `README.md`, `RUN_LOG.md`, and `result.json` to replace the stale GitHub publication state with the verified state above.
+- Exit code: `0`.
+- Scope confirmation: documentation-only correction. DataHub was not restarted; DataHub health was not rechecked; the qualifying MCP reads were not rerun; the three existing metadata evidence JSON files were not modified; Milestone 1B was not started.
+
+### 2026-07-21T22:11:35.3560597Z — PASS
+
+- Exact cleanup commands: `Get-ChildItem -Recurse -Directory -Filter __pycache__ | Remove-Item -Recurse -Force`; `Remove-Item .pytest_cache -Recurse -Force -ErrorAction SilentlyContinue` (implemented with resolved-path checks that refused any target outside the workspace).
+- Exit code: `0`.
+- Relevant output: removed `1032` pre-validation `__pycache__` directories; after validation, removed the `159` cache directories recreated by Python/test execution and removed `.pytest_cache` again.
+- Exact cache verification command: `git ls-files | Select-String '__pycache__|\.pyc$|\.pytest_cache'`.
+- Exit code: `0`; relevant output: no matches (`0` tracked cache files).
+
+### 2026-07-21T22:11:35.3560597Z — PASS
+
+- Exact validation commands: `.\.venv\Scripts\python.exe -m json.tool result.json > $null`; the same `json.tool` command for `evidence\agent-context-read-1.json`, `evidence\agent-context-read-2.json`, and `evidence\metadata-coverage.json`; `.\.venv\Scripts\python.exe -m pip check`; `.\.venv\Scripts\python.exe -m pytest -q`.
+- Exit codes: `0` for all four JSON validations, `pip check`, and pytest.
+- Relevant output: `No broken requirements found.`; `2 passed in 2.23s`.
+- Preservation checks: `git diff --quiet` returned `0` for each of the three evidence JSON files; `eligible_read`, `metadata_coverage`, and `scope_confirmation` in `result.json` exactly matched committed `HEAD`; the only modified files were `README.md`, `RUN_LOG.md`, and `result.json`.
+
+## Preservation-first repository reconciliation
+
+### 2026-07-21T23:19:47.3155788Z — PASS
+
+- Exact precondition commands: `git status --short`; `git rev-parse HEAD`; `git ls-remote origin refs/heads/main`.
+- Exit codes: `0`.
+- Relevant output: prepared changes were limited to `README.md`, `RUN_LOG.md`, and `result.json`; authoritative local `HEAD` was exactly `c0eb53daaa7d906b9a04bdddf40d9053059a0073`; previous remote `main` was exactly `ccc9c51803e3ccc5cf38bde715b5284867d66db6`.
+
+### 2026-07-21T23:19:47.3155788Z — PASS
+
+- Exact preservation operations: `git branch archive/remote-main-pre-reconciliation-2026-07-21 ccc9c51803e3ccc5cf38bde715b5284867d66db6`; `git tag remote-main-pre-reconciliation-2026-07-21 ccc9c51803e3ccc5cf38bde715b5284867d66db6`; pushed the matching branch and tag refs to `origin`; verified both with `git ls-remote`.
+- Exit codes: `0`.
+- Relevant output: remote branch `refs/heads/archive/remote-main-pre-reconciliation-2026-07-21` and remote tag `refs/tags/remote-main-pre-reconciliation-2026-07-21` both resolved exactly to `ccc9c51803e3ccc5cf38bde715b5284867d66db6`.
+- Preservation result: the previous unrelated remote history is retained intact under both authorized refs. No histories were merged and remote `main` had not yet been replaced at this point.
+
+### 2026-07-21T23:20:50.1715476Z — PASS
+
+- Exact validation commands: cache removal; tracked-cache search; `python -m json.tool` for `result.json` and all three evidence JSON files; `pip check`; `pytest -q`; evidence `git diff --quiet` checks; documentation-state field checks.
+- Exit codes: `0` for every JSON validation, dependency check, test run, and evidence diff check.
+- Relevant output: no tracked cache matches; `No broken requirements found.`; `2 passed in 2.20s`; all required GitHub publication fields passed; all three evidence JSON files were unchanged; only `README.md`, `RUN_LOG.md`, and `result.json` were modified.
+- Post-test hygiene: removed `159` regenerated `__pycache__` directories and `.pytest_cache`; no tracked cache files remained.
+- Scope confirmation: DataHub and the qualifying MCP reads were not rerun, and no Milestone 1B work was performed.
