@@ -1,0 +1,233 @@
+{
+  "verdict": "PASS",
+  "effective_staging_path": "D:\\OneDrive\\1.2 AI General\\DataHub Agent Arbiter\\datahub-agent-arbiter-m1a-2026-07-21",
+  "repository_path": "D:\\OneDrive\\1.2 AI General\\DataHub Agent Arbiter\\datahub-agent-arbiter-m1a-2026-07-21\\datahub-agent-arbiter",
+  "public_repository_url": null,
+  "environment_versions": {
+    "python": "3.11.7",
+    "docker_desktop": "4.35.1.173168",
+    "docker_client": "27.3.1",
+    "docker_server": "27.3.1",
+    "docker_context": "desktop-linux",
+    "docker_engine_status": "running_and_reachable",
+    "docker_architecture": "x86_64",
+    "docker_memory_gib": 31.22,
+    "docker_compose": "v2.29.7-desktop.1",
+    "git": "2.40.0.windows.1",
+    "available_disk_bytes": 1596117204992,
+    "available_disk_gib": 1486.5,
+    "github_cli": "2.96.0",
+    "github_cli_authentication": "invalid_token",
+    "datahub_oss": "v1.6.0",
+    "acryl_datahub": "1.6.0.6",
+    "mcp_server_datahub": "0.6.0",
+    "datahub_agent_context": "1.6.0.15",
+    "pip_system_certs": "5.3"
+  },
+  "files_created": [
+    ".git/config",
+    ".git/description",
+    ".git/HEAD",
+    ".git/hooks/applypatch-msg.sample",
+    ".git/hooks/commit-msg.sample",
+    ".git/hooks/fsmonitor-watchman.sample",
+    ".git/hooks/post-update.sample",
+    ".git/hooks/pre-applypatch.sample",
+    ".git/hooks/pre-commit.sample",
+    ".git/hooks/pre-merge-commit.sample",
+    ".git/hooks/pre-push.sample",
+    ".git/hooks/pre-rebase.sample",
+    ".git/hooks/pre-receive.sample",
+    ".git/hooks/prepare-commit-msg.sample",
+    ".git/hooks/push-to-checkout.sample",
+    ".git/hooks/update.sample",
+    ".git/info/exclude",
+    ".gitignore",
+    "LICENSE",
+    "README.md",
+    "RUN_LOG.md",
+    "requirements.txt",
+    "result.json",
+    "scripts/mcp_probe.py",
+    "scripts/mcp_read.py",
+    "scripts/sdk_supplement.py",
+    "scripts/verify_environment.ps1",
+    "tests/test_result_schema.py",
+    ".venv/ (generated ignored isolated dependency environment)",
+    ".runtime-home/ (generated ignored local DataHub CLI state and evidence runtime)"
+  ],
+  "files_modified": [
+    ".gitignore",
+    "README.md",
+    "RUN_LOG.md",
+    "requirements.txt",
+    "result.json"
+  ],
+  "commands_executed": [
+    "Test-Path/Get-Item/Get-ChildItem read-only inspection of the authorized working area and requested paths",
+    "New-Item -ItemType Directory for the authorized area, staging path, repository, scripts, and tests",
+    "python --version",
+    "docker version",
+    "docker info",
+    "docker compose version",
+    "git --version",
+    "[System.IO.DriveInfo]::new('D')",
+    "gh --version",
+    "gh auth status",
+    "Get-Item 'C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe' VersionInfo",
+    "Get-Service -Name 'com.docker.service'",
+    "Get-Process -Name 'Docker Desktop','com.docker.backend'",
+    "git init -b main (initial sandbox attempt denied; narrowly elevated retry succeeded)",
+    "Get-Content -Raw .\\result.json | ConvertFrom-Json",
+    "$env:PYTHONDONTWRITEBYTECODE='1'; python -m pytest -q -p no:cacheprovider",
+    "git status --short (blocked by dubious ownership after elevated initialization)",
+    "git -c safe.directory='D:/OneDrive/1.2 AI General/DataHub Agent Arbiter/datahub-agent-arbiter-m1a-2026-07-21/datahub-agent-arbiter' status --short",
+    "docker context show; docker version; docker info; docker compose version",
+    "python -m venv .venv",
+    ".\\.venv\\Scripts\\python.exe -m pip install -r requirements.txt (failed: proxy certificate)",
+    ".\\.venv\\Scripts\\python.exe -m pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements.txt (first retry exposed version conflict; corrected retry succeeded)",
+    ".\\.venv\\Scripts\\python.exe -m pip index versions pip-system-certs --trusted-host pypi.org --trusted-host files.pythonhosted.org",
+    ".\\.venv\\Scripts\\python.exe -m pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org pip-system-certs==5.3",
+    ".\\.venv\\Scripts\\datahub.exe version",
+    ".\\.venv\\Scripts\\datahub.exe docker quickstart --version v1.6.0 --accept-version-default (certificate failure; corrected retry started DataHub; final CP-1252 presentation error only)",
+    "docker ps -a --filter name=datahub-",
+    "docker inspect DataHub container health",
+    ".\\.venv\\Scripts\\datahub.exe docker check",
+    "Invoke-WebRequest http://localhost:8080/health",
+    "Invoke-WebRequest http://localhost:9002",
+    ".\\.venv\\Scripts\\datahub.exe init --username datahub --password datahub",
+    ".\\.venv\\Scripts\\datahub.exe datapack load showcase-ecommerce (Windows path failure)",
+    "docker exec datahub-datahub-actions-quickstart-1 datahub datapack load showcase-ecommerce",
+    ".\\.venv\\Scripts\\mcp-server-datahub.exe --version",
+    ".\\.venv\\Scripts\\python.exe .\\scripts\\mcp_probe.py",
+    ".\\.venv\\Scripts\\python.exe .\\scripts\\mcp_read.py --attempt 1",
+    ".\\.venv\\Scripts\\python.exe .\\scripts\\mcp_read.py --attempt 2",
+    ".\\.venv\\Scripts\\python.exe .\\scripts\\mcp_read.py --attempt 3",
+    ".\\.venv\\Scripts\\python.exe .\\scripts\\sdk_supplement.py"
+  ],
+  "eligible_read_path": {
+    "primary": "mcp-server-datahub==0.6.0",
+    "fallback": "datahub-agent-context==1.6.0.15",
+    "used": "mcp-server-datahub==0.6.0 over stdio",
+    "status": "success",
+    "fallback_attempted": false,
+    "fallback_reason": "Not required because the primary MCP path succeeded."
+  },
+  "eligible_read_attempts": [
+    {
+      "attempt": 1,
+      "started_at_utc": "2026-07-21T18:45:33.836517+00:00",
+      "completed_at_utc": "2026-07-21T18:45:37.449587+00:00",
+      "status": "success",
+      "dataset_urn": "urn:li:dataset:(urn:li:dataPlatform:dbt,b2fd91.ORDER_ENTRY_DB.analytics.order_details,PROD)",
+      "qualifying_search_results": 5,
+      "lineage_direction": "upstream",
+      "metadata_real_source": "official showcase-ecommerce datapack"
+    },
+    {
+      "attempt": 2,
+      "started_at_utc": "2026-07-21T18:46:38.397344+00:00",
+      "completed_at_utc": "2026-07-21T18:46:41.408831+00:00",
+      "status": "success",
+      "dataset_urn": "urn:li:dataset:(urn:li:dataPlatform:dbt,b2fd91.ORDER_ENTRY_DB.analytics.order_details,PROD)",
+      "qualifying_search_results": 5,
+      "lineage_direction": "upstream",
+      "consecutive_with_attempt_1": true,
+      "metadata_real_source": "official showcase-ecommerce datapack"
+    },
+    {
+      "attempt": 3,
+      "started_at_utc": "2026-07-21T18:47:30.044670+00:00",
+      "completed_at_utc": "2026-07-21T18:47:32.966477+00:00",
+      "status": "success_coverage_pass",
+      "dataset_urn": "urn:li:dataset:(urn:li:dataPlatform:dbt,b2fd91.ORDER_ENTRY_DB.analytics.order_details,PROD)",
+      "upstream_lineage_total": 11,
+      "metadata_real_source": "official showcase-ecommerce datapack"
+    }
+  ],
+  "aspect_coverage": {
+    "ownership": {
+      "status": "populated_via_mcp",
+      "evidence": "ownership.owners returned DataHub SE Team and Data Platform Team ownership records"
+    },
+    "lineage": {
+      "status": "populated_via_mcp",
+      "evidence": "get_lineage returned 11 upstream dataset URNs"
+    },
+    "deprecation": {
+      "status": "explicitly_tested_no_populated_official_sample_record",
+      "evidence": "MCP deprecated=true dataset search succeeded with total 0 and Deprecated=true facet count 0"
+    },
+    "replacement_information": {
+      "status": "explicitly_tested_no_populated_official_sample_record",
+      "evidence": "MCP replacement/deprecation document search succeeded with total 0; SDK model exposes replacement but selected dataset has no Deprecation aspect"
+    },
+    "domains": {
+      "status": "populated_via_mcp",
+      "evidence": "Data Platform Team domain and URN returned"
+    },
+    "tags": {
+      "status": "populated_via_mcp",
+      "evidence": "PII_Data and Authoritative Source returned"
+    },
+    "structured_properties": {
+      "status": "populated_via_mcp",
+      "evidence": "showcase.dataFreshnessSla returned with value Daily; additional structured properties present"
+    }
+  },
+  "sdk_supplementation": {
+    "used": true,
+    "details": {
+      "timestamp_utc": "2026-07-21T18:48:14.185253+00:00",
+      "supplement_only": true,
+      "dataset_urn": "urn:li:dataset:(urn:li:dataPlatform:dbt,b2fd91.ORDER_ENTRY_DB.analytics.order_details,PROD)",
+      "deprecation_aspect_present": false,
+      "model_fields_confirmed": [
+        "deprecated",
+        "decommissionTime",
+        "note",
+        "actor",
+        "replacement"
+      ]
+    }
+  },
+  "datahub_health": {
+    "pinned_version": "v1.6.0",
+    "startup_attempted": true,
+    "startup_command": ".\\.venv\\Scripts\\datahub.exe docker quickstart --version v1.6.0 --accept-version-default",
+    "final_checked_at_utc": "2026-07-21T18:48:50.1772380Z",
+    "containers": {
+      "datahub-actions": "running",
+      "datahub-frontend": "healthy",
+      "datahub-gms": "healthy",
+      "system-update": "exited_0_expected",
+      "kafka": "healthy",
+      "mysql": "healthy",
+      "opensearch": "healthy"
+    },
+    "health_checks": "datahub docker check: No issues detected; GMS HTTP 200",
+    "localhost_ui": "HTTP 200 text/html",
+    "healthy": true
+  },
+  "blockers": [
+    {
+      "scope": "github_publication_only",
+      "blocker": "GitHub CLI active account token is invalid.",
+      "prerequisite": "Owner must re-authenticate GitHub CLI non-interactively or complete the required interactive authentication."
+    }
+  ],
+  "scope_verification": {
+    "all_files_inside_authorized_working_area": true,
+    "unified_ai_work_system_code_or_artifacts_copied": false,
+    "unified_ai_work_system_materials_read": false,
+    "synthetic_arbiter_entities_created": false,
+    "policy_logic_created": false,
+    "action_gating_created": false,
+    "decision_writeback_created": false,
+    "gui_created": false,
+    "submission_video_created": false,
+    "milestone_1b_started": false,
+    "personal_or_sensitive_data_accessed": false
+  },
+  "next_action": "Owner: re-authenticate GitHub CLI for the public-repository publication substep."
+}

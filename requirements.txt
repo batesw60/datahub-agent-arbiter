@@ -1,0 +1,7 @@
+# Released versions selected for the DataHub OSS 1.6.0 compatibility family.
+# Agent Context Kit 1.6.0.15 requires this exact SDK extra/version.
+acryl-datahub[datahub-rest]==1.6.0.6
+mcp-server-datahub==0.6.0
+datahub-agent-context==1.6.0.15
+# Makes Python HTTPS clients honor the Windows certificate store behind this host's proxy.
+pip-system-certs==5.3
