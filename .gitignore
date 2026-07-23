@@ -7,3 +7,6 @@ __pycache__/
 .env
 *.log
 evidence/*.tmp
+
+# Reversible Milestone 1B action workspace
+.arbiter-actions/

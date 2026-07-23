@@ -1,0 +1,66 @@
+{
+  "milestone": "1B",
+  "status": "PASS",
+  "timestamp": "2026-07-22T02:30:45.848955Z",
+  "synthetic_instruction_source_count": 4,
+  "decisions": {
+    "allow": {
+      "action": "CREATE_REPOSITORY_MARKER",
+      "decision": "ALLOW",
+      "reason_code": "AUTHORITATIVE_ALLOW",
+      "source_urns": [
+        "urn:li:dataset:(urn:li:dataPlatform:file,datahub-agent-arbiter.owner-current-allow,PROD)"
+      ],
+      "authoritative_rank": 100,
+      "replacement_urns": [],
+      "sha256": "b1f6d3f5470a6a2085ae94bad5873362ce9704c85e2a3cc03707fa48d6a9f805"
+    },
+    "block": {
+      "action": "CREATE_REPOSITORY_MARKER",
+      "decision": "BLOCK",
+      "reason_code": "AUTHORITATIVE_BLOCK",
+      "source_urns": [
+        "urn:li:dataset:(urn:li:dataPlatform:file,datahub-agent-arbiter.security-current-block,PROD)"
+      ],
+      "authoritative_rank": 100,
+      "replacement_urns": [],
+      "sha256": "0acdd2913d6f3b3752f54f365d260bbc0ff3181a26dc5024780811619cde4ab4"
+    },
+    "review": {
+      "action": "CREATE_REPOSITORY_MARKER",
+      "decision": "REVIEW_REQUIRED",
+      "reason_code": "EQUAL_AUTHORITY_CONFLICT",
+      "source_urns": [
+        "urn:li:dataset:(urn:li:dataPlatform:file,datahub-agent-arbiter.owner-current-allow,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:file,datahub-agent-arbiter.security-current-block,PROD)"
+      ],
+      "authoritative_rank": 100,
+      "replacement_urns": [],
+      "sha256": "1fcc3c1f2d964142225c5d8b5374336f46d2900b178a0622c5ef8489c8403d4b"
+    },
+    "deprecated": {
+      "action": "CREATE_REPOSITORY_MARKER",
+      "decision": "BLOCK",
+      "reason_code": "DEPRECATED_AUTHORITY_SOURCE",
+      "source_urns": [
+        "urn:li:dataset:(urn:li:dataPlatform:file,datahub-agent-arbiter.legacy-deprecated-allow,PROD)"
+      ],
+      "authoritative_rank": 120,
+      "replacement_urns": [
+        "urn:li:dataset:(urn:li:dataPlatform:file,datahub-agent-arbiter.owner-current-allow,PROD)"
+      ],
+      "sha256": "55017e5f797a7d794e4ccb6d27f3213b103b881b2bf9a9a331b90752d76b81c0"
+    }
+  },
+  "bounded_action": {
+    "path": ".arbiter-actions\\milestone-1b-marker.json",
+    "sha256": "7aea40381e657775aa67ab8bf7dc9cea1f32f9010af60813d225a9fffee8de0f",
+    "created": true,
+    "reverted": true
+  },
+  "datahub_writeback": {
+    "target_urn": "urn:li:dataset:(urn:li:dataPlatform:file,datahub-agent-arbiter.owner-current-allow,PROD)",
+    "evidence_sha256": "b1f6d3f5470a6a2085ae94bad5873362ce9704c85e2a3cc03707fa48d6a9f805",
+    "readback_exact": true
+  }
+}

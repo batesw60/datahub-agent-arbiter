@@ -11,11 +11,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from datahub.cli.cli_utils import generate_access_token
-from mcp import ClientSession, StdioServerParameters
-from mcp.client.stdio import stdio_client
-from mcp.types import CallToolResult, TextContent
-
 DEFAULT_GMS_URL = "http://localhost:8080"
 DEFAULT_SAMPLE_URN = (
     "urn:li:dataset:(urn:li:dataPlatform:dbt,"
@@ -33,8 +28,10 @@ def _unwrap_result(value: Any) -> Any:
     return value
 
 
-def result_payload(result: CallToolResult) -> Any:
+def result_payload(result: Any) -> Any:
     """Return the JSON-compatible payload produced by an MCP tool call."""
+    from mcp.types import TextContent
+
     if result.isError:
         detail = "\n".join(
             part.text for part in result.content if isinstance(part, TextContent)
@@ -80,6 +77,8 @@ def entity_name(metadata: Any) -> str:
 
 
 def resolve_token(gms_url: str) -> tuple[str, str]:
+    from datahub.cli.cli_utils import generate_access_token
+
     supplied = os.environ.get("DATAHUB_GMS_TOKEN")
     if supplied:
         return supplied, "DATAHUB_GMS_TOKEN"
@@ -97,6 +96,8 @@ def resolve_token(gms_url: str) -> tuple[str, str]:
 
 class McpDataHubReader:
     def __init__(self, gms_url: str, token: str) -> None:
+        from mcp import StdioServerParameters
+
         server_env = os.environ.copy()
         server_env.update(
             {
@@ -114,6 +115,9 @@ class McpDataHubReader:
         )
 
     async def call(self, tool_name: str, arguments: dict[str, Any]) -> Any:
+        from mcp import ClientSession
+        from mcp.client.stdio import stdio_client
+
         async with stdio_client(self.parameters) as (read_stream, write_stream):
             async with ClientSession(read_stream, write_stream) as session:
                 await session.initialize()

@@ -1,0 +1,32 @@
+- id: io.datahub.arbiter.authorityRank
+  qualified_name: io.datahub.arbiter.authorityRank
+  type: number
+  cardinality: SINGLE
+  display_name: Authority Rank
+  entity_types:
+    - dataset
+  description: Deterministic authority rank used by DataHub Agent Arbiter.
+- id: io.datahub.arbiter.directive
+  qualified_name: io.datahub.arbiter.directive
+  type: string
+  cardinality: SINGLE
+  display_name: Directive
+  entity_types:
+    - dataset
+  description: ALLOW or BLOCK directive for the scoped action.
+- id: io.datahub.arbiter.actionScope
+  qualified_name: io.datahub.arbiter.actionScope
+  type: string
+  cardinality: SINGLE
+  display_name: Action Scope
+  entity_types:
+    - dataset
+  description: Action identifier governed by this instruction source.
+- id: io.datahub.arbiter.replacementUrn
+  qualified_name: io.datahub.arbiter.replacementUrn
+  type: string
+  cardinality: SINGLE
+  display_name: Replacement URN
+  entity_types:
+    - dataset
+  description: Current replacement for a deprecated instruction source.
